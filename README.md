@@ -1,12 +1,12 @@
 # 🎵 Spotify MCP
 
-A cozy little tool that brings together your Spotify playlists and music recommendations from Reddit.
+A handy little tool that combines a Spotify playlist with music recommendations from Reddit.
 
 ## What is this?
 
-Spotify MCP is a personal music assistant that helps you:
+Spotify MCP is a personal music assistant that helps:
 
-- 🎧 Browse your Spotify playlists
+- 🎧 Browse a Spotify playlist
 - 🔍 Discover new music recommendations from Reddit communities
 - 💬 Chat with Claude AI about music and get personalized suggestions
 
@@ -14,7 +14,7 @@ Spotify MCP is a personal music assistant that helps you:
 
 This project uses the Model Control Protocol (MCP) to create a bridge between:
 
-1. **Spotify API** - Access your playlists and track information
+1. **Spotify API** - Access playlist and track information
 2. **Reddit API** - Crawl music subreddits for recommendations
 3. **Claude AI** - Process your queries and provide intelligent responses
 
