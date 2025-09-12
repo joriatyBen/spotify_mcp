@@ -1,4 +1,3 @@
-from this import d
 from typing import Any, Dict, List
 import httpx
 from mcp.server.fastmcp import FastMCP
@@ -65,7 +64,10 @@ async def _map_artist_title(data: Dict[str, Any]) -> List[str]:
 
     return artist_track_list
 
-@mcp.tool()
+@mcp.tool(
+    name="get_playlist_titles_and_artists",
+    description="Retrieves all tracks from a specific Spotify playlist, returning a list of artist and track name pairs. Requires SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET, and PLAYLIST_ID environment variables."
+)
 async def get_playlist_titles_and_artists() -> List[str]:
     url = f"{SPOTIFY_API_BASE}/playlists/{os.getenv('PLAYLIST_ID')}/tracks?limit=100"
     print(url)
@@ -79,7 +81,10 @@ async def get_playlist_titles_and_artists() -> List[str]:
     
     return await _map_artist_title(data)
 
-@mcp.tool()
+@mcp.tool(
+    name="crawl_subreddit_recommendations",
+    description="Crawls the r/punk subreddit to find band recommendations from recent posts and comments. Searches for recommendation keywords like 'recommend', 'check out', 'similar to', etc. Requires REDDIT_CLIENT_ID, REDDIT_CLIENT_SECRET, and REDDIT_USERNAME environment variables."
+)
 async def crawl_subreddit_recomments() -> str:
     # Authenticate using environment variables
     reddit = asyncpraw.Reddit(

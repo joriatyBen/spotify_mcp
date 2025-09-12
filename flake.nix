@@ -3,12 +3,21 @@
 
   inputs = {
     flake-utils.url = "github:numtide/flake-utils";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
 
   outputs = { self, nixpkgs, flake-utils }:
     flake-utils.lib.eachDefaultSystem (
       system: let
-        pkgs = nixpkgs.legacyPackages."${system}";
+        lib = nixpkgs.lib;
+        pkgs = import nixpkgs {
+          inherit system;
+          config = {
+            allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+              "claude-code"
+            ];
+          };
+        };
       in
         rec {
           devShell = pkgs.mkShell {
@@ -18,6 +27,7 @@
               python312Packages.autopep8
               uv
               nodejs_20
+              claude-code
             ];
 
             shellHook = ''
